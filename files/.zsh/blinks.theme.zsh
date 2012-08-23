@@ -13,11 +13,11 @@ ZSH_THEME_GIT_PROMPT_SUFFIX="%{%f%k%b%K{black}%B%F{green}%}]"
 ZSH_THEME_GIT_PROMPT_DIRTY=" %{%F{red}%}*%{%f%k%b%}"
 ZSH_THEME_GIT_PROMPT_CLEAN=""
 
-ZSH_PROMPT_USER "%B%F{green}%}%n%{%B%F{blue}%}@%{%B%F{cyan}%}%m%{%B%F{green}%}"
+ZSH_PROMPT_USER="%B%F{green}%}%n%{%B%F{blue}%}@%{%B%F{cyan}%}%m%{%B%F{green}%}"
 ZSH_PROMPT_PWD="%{%b%F{yellow}%K{black}%}%~%{%B%F{green}%}"
 
 PROMPT='%{%f%k%b%}
-%{%K{black}$(user_color) ${ZSH_PROMPT_PWD} ${ZSH_PROMPT_USER}%E%{%f%k%b%}
+%{%K{black}${ZSH_PROMPT_USER} ${ZSH_PROMPT_PWD} $(git_prompt_info)%E%{%f%k%b%}
 %{%K{black}%}$(_prompt_char)%{%K{black}%} %#%{%f%k%b%} '
 
 RPROMPT=%B%F{white}%t%{%f%k%b%}

@@ -8,7 +8,6 @@ for files (.*); do
   else
     filename=$files
   fi
-  echo $filename
   if [[ -f ~/$filename || -d ~/$filename ]]; then
     if [[ ! -d ~/olddotfiles ]]; then
       mkdir ~/olddotfiles

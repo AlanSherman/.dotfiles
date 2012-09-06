@@ -22,10 +22,13 @@
    alias ...='cd ../..'
    alias ....='cd ../../..'
    alias .....='cd ../../../..'
+# IRC
+   if [ -n "`hostname | grep steel`" ] ; then
+     alias irc='screen -DAr irc'
+   else
+     alias irc='ssh steel -t screen -DAr irc'
+   fi
 # SSH
-   alias irc='ssh steel -t screen -DAr irc'
-   alias fsh='ssh fir -t sudo ssh'
-   alias esh='ssh steel -t ssh -i .ssh/id_rsa_ec2'
    alias vff='ssh fir -t sudo view /root/.../firfile'
    alias eff='ssh fir -t sudo vim /root/.../firfile'
 # ---aptitude---

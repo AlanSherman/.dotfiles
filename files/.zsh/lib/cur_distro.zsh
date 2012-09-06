@@ -2,9 +2,9 @@
 
 function cur_distro() {
 
-    if [[ -e /etc/issue ]]; then
+    if [[ -f /etc/issue ]]; then
         ISSUE=/etc/issue
-    elif [[ -e /etc/issue.net ]]; then
+    elif [[ -f /etc/issue.net ]]; then
         ISSUE=/etc/issue.net 
     else
         echo "/etc/issue or /etc/issue.net not found defaulting to debian"

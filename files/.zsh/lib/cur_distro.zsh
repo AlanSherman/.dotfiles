@@ -15,7 +15,7 @@ function cur_distro() {
         CUR_OS="debian" #debian is the default
     elif [ -n "`egrep -i 'Ubuntu|Debian|Mint' $ISSUE`" ] ; then
         CUR_OS="debian"
-    elif [ -n "`egrep -i 'CentOS|Red Hat' $ISSUE`" ] ; then
+    elif [ -n "`egrep -i 'CentOS|Red Hat|Fedora' $ISSUE`" ] ; then
         CUR_OS="redhat"
     else
         CUR_OS="debain"

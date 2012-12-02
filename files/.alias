@@ -32,13 +32,13 @@
    alias vff='ssh fir -t sudo view /root/.../firfile'
    alias eff='ssh fir -t sudo vim /root/.../firfile'
 # package management
-   if [[ cur_distro == "debian" ]]; then
+   if [[ `cur_distro` == "debian" ]]; then
      alias install='sudo apt-get install'
      alias remove='sudo apt-get remove'
      alias search='apt-cache search'
      alias update='sudo apt-get update'
      alias upgrade='sudo apt-get update && sudo apt-get upgrade'
-   elif [[ cur_distro == "redhat" ]]; then
+   elif [[ `cur_distro` == "redhat" ]]; then
      alias install='sudo yum install'
      alias remove='sudo yum remove'
      alias search='yum search'

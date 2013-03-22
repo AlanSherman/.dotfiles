@@ -32,7 +32,7 @@
    alias vff='ssh fir -t sudo view /root/.../firfile'
    alias eff='ssh fir -t sudo vim /root/.../firfile'
 # package management
-   if [[ `cur_distro` == "debian" ]]; then
+   if [[ `cur_distro` == "debian" || `cur_distro` == "Unable to detect disto defaulting to debain" ]]; then
      alias install='sudo apt-get install'
      alias remove='sudo apt-get remove'
      alias search='apt-cache search'

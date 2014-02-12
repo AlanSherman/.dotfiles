@@ -23,14 +23,11 @@
    alias ....='cd ../../..'
    alias .....='cd ../../../..'
 # IRC
-   if [ -n "`hostname | grep steel`" ]; then
+   if [ -n "`hostname | grep copper`" ]; then
      alias irc='screen -DAr irc'
    else
-     alias irc='ssh steel -t screen -DAr irc'
+     alias irc='ssh copper -t screen -DAr irc'
    fi
-# SSH
-   alias vff='ssh fir -t sudo view /root/.../firfile'
-   alias eff='ssh fir -t sudo vim /root/.../firfile'
 # package management
    if [[ `cur_distro` == "debian" || `cur_distro` == "Unable to detect disto defaulting to debain" ]]; then
      alias install='sudo apt-get install'

@@ -1,12 +1,10 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
-" set the runtime path to include Vundle and initialize
+"set the runtime path to include Vundle and initialize
+"on clean install fun "git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle" and ":BundleInstall"
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
-" alternatively, pass a path where Vundle should install bundles
-"let path = '~/some/path/here'
-"call vundle#rc(path)
 
 Bundle 'scrooloose/nerdtree'
 "Bundle 'spf13/vim-colors'

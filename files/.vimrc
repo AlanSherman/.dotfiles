@@ -9,9 +9,8 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 
 " My Bundles
-Bundle 'tpope/vim-sensible'
 Bundle 'tpope/vim-fugitive'
-Bundle 'flazz/vim-colorschemes'
+Bundle 'altercation/vim-colors-solarized'
 Bundle 'Lokaltog/vim-powerline'
 Bundle 'scrooloose/syntastic'
 Bundle 'scrooloose/nerdtree'
@@ -26,7 +25,9 @@ filetype plugin indent on
 let mapleader=","
 
 set background=dark
-color solarized
+colorscheme solarized
+
+syntax enable
 
 set cursorline
 set expandtab

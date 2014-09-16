@@ -21,4 +21,4 @@ source ~/.zsh/blinks.theme.zsh
 source ~/.alias
 
 dotfiles=$( dirname `readlink ~/.bashrc` )
-. $dotfiles/update.sh
+$dotfiles/update.sh

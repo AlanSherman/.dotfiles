@@ -37,6 +37,9 @@ PS1='\[\e[1;32m\]\h\[\e[m\] \[\e[1;34m\]\w\[\e[m\] \[\e[1;34m\]\$ \[\e[0;37m\]'
 
 export EDITOR="/usr/bin/vim"
 
+dotfiles=$( dirname `readlink ~/.bashrc` )
+. $dotfiles/update.sh
+
 source ~/.alias
 
 #   __                  _   _                 

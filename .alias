@@ -23,10 +23,10 @@
    alias ....='cd ../../..'
    alias .....='cd ../../../..'
 # IRC
-   if [ -n "`hostname | grep silver`" ]; then
+   if [ -n "`hostname | grep tin`" ]; then
      alias irc='screen -DAr irc'
    else
-     alias irc='ssh alan@silver.alansherman.org -t screen -DAr irc'
+     alias irc='ssh alan@tin.alansherman.org -t screen -DAr irc'
    fi
 # package management
    if [[ `cur_distro` == "debian" || `cur_distro` == "Unable to detect disto defaulting to debain" ]]; then

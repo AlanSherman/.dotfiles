@@ -38,9 +38,10 @@
   Bundle 'kien/ctrlp.vim'
   Bundle 'Lokaltog/vim-easymotion'
   Bundle 'Lokaltog/vim-powerline'
-  Bundle "myusuf3/numbers.vim"
+  Bundle 'myusuf3/numbers.vim'
   Bundle 'nanotech/jellybeans.vim'
     color jellybeans
+  Bundle 'godlygeek/tabular'
   Bundle 'scrooloose/nerdcommenter'
   Bundle 'scrooloose/nerdtree'
   Bundle 'scrooloose/syntastic'
@@ -50,6 +51,11 @@
   Bundle 'plasticboy/vim-markdown'
   Bundle 'puppetlabs/puppet-syntax-vim'
   Bundle 'saltstack/salt-vim'
+
+" FileTypes
+" =========
+
+  autocmd! BufEnter *.pp set filetype=puppet
 
 " Vim Settings
 " ============

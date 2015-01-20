@@ -38,7 +38,10 @@
   Bundle 'kien/ctrlp.vim'
   Bundle 'Lokaltog/vim-easymotion'
   Bundle 'Lokaltog/vim-powerline'
-  Bundle 'myusuf3/numbers.vim'
+  Bundle 'garbas/vim-snipmate'
+    Bundle 'MarcWeber/vim-addon-mw-utils'
+    Bundle 'tomtom/tlib_vim'
+    Bundle 'honza/vim-snippets'
   Bundle 'nanotech/jellybeans.vim'
     color jellybeans
   Bundle 'godlygeek/tabular'
@@ -162,7 +165,14 @@
   let NERDTreeIgnore = ['tmp', '.yardoc', 'pkg']
 
   " Syntastic
-  "let g:syntastic_mode_map = { 'mode': 'passive' }
+  let g:syntastic_c_checkers=['make','splint']
+  set statusline+=%#warningmsg#
+  set statusline+=%{SyntasticStatuslineFlag()}
+  set statusline+=%*
+  let g:syntastic_always_populate_loc_list = 1
+  "let g:syntastic_auto_loc_list = 1
+  let g:syntastic_check_on_open = 1
+  let g:syntastic_check_on_wq = 0
 
   " CtrlP
   let g:ctrlp_working_path_mode = 2
@@ -189,5 +199,5 @@
   set ttimeoutlen=10
 
   " Syntax optimazations
-   syntax sync minlines=256
-  " set syntaxcol=256
+  "syntax sync minlines=256
+  "set syntaxcol=256

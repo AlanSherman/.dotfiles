@@ -13,6 +13,7 @@ fi
 source $ZSHA_BASE/antigen/antigen.zsh
 
 antigen-use oh-my-zsh
+antigen-bundle AlanSherman/zsh-distroalias
 antigen-bundle command-not-found
 antigen-bundle colored-man
 antigen-bundle extract
@@ -36,6 +37,13 @@ compinit -i
 
 # Add alias
 source ~/.alias
+
+
+chpwd_auto_ls () {
+  ls --color=if-tty
+}
+
+add-zsh-hook chpwd chpwd_auto_ls
 
 dotfiles=$( dirname `readlink ~/.bashrc` )
 $dotfiles/update.sh

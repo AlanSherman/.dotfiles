@@ -44,6 +44,7 @@
     Bundle 'honza/vim-snippets'
   Bundle 'nanotech/jellybeans.vim'
     color jellybeans
+  Bundle 'gcmt/wildfire.vim'
   Bundle 'godlygeek/tabular'
   Bundle 'scrooloose/nerdcommenter'
   Bundle 'scrooloose/nerdtree'

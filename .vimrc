@@ -60,6 +60,7 @@
 " =========
 
   autocmd! BufEnter *.pp set filetype=puppet
+  autocmd! BufEnter *.sls set filetype=sls
 
 " Vim Settings
 " ============
@@ -166,10 +167,10 @@
   let NERDTreeIgnore = ['tmp', '.yardoc', 'pkg']
 
   " Syntastic
-  let g:syntastic_c_checkers=['make','splint']
   set statusline+=%#warningmsg#
   set statusline+=%{SyntasticStatuslineFlag()}
   set statusline+=%*
+  let g:syntastic_puppet_checkers=['puppetlint']
   let g:syntastic_always_populate_loc_list = 1
   "let g:syntastic_auto_loc_list = 1
   let g:syntastic_check_on_open = 1

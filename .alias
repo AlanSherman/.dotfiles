@@ -23,8 +23,8 @@
    alias ....='cd ../../..'
    alias .....='cd ../../../..'
 # IRC
-   if [ -n "`hostname | grep tin`" ]; then
+   if [ -n "`hostname | grep steel`" ]; then
      alias irc='screen -DAr irc'
    else
-     alias irc='ssh alan@tin.alansherman.org -t screen -DAr irc'
+     alias irc='ssh alan@steel.alansherman.org -t screen -DAr irc'
    fi

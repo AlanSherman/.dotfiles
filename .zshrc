@@ -40,7 +40,7 @@ source ~/.alias
 
 
 chpwd_auto_ls () {
-  ls --color=if-tty
+  ls -HG
 }
 
 add-zsh-hook chpwd chpwd_auto_ls

@@ -9,10 +9,10 @@
    alias grep='grep -i --color=auto'                     # show differences in colour
    alias egrep='egrep -i --color=auto'              # show differences in colour
    alias fgrep='fgrep -i --color=auto'              # show differences in colour
-   alias ls='ls -h --color=tty'                 # classify files in colour
-   alias ll='ls -la --color=auto'                              # long list
-   alias la='ls -a --color=auto'                              # all but . and ..
-   alias lr='ls -lRi --color=auto'          # recursive ls
+   alias ls='ls -HFG'                 # classify files in colour
+   alias ll='ls -laFG'                              # long list
+   alias la='ls -aFG'                              # all but . and ..
+   alias lr='ls -lRiFG'          # recursive ls
    alias tree='tree -C'     # nice alternative to 'recursive ls'
    alias atree='tree -Ca'     # tree that shows all
    alias dtree='tree -Cd'     # just dirs

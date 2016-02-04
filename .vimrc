@@ -7,6 +7,7 @@
   filetype plugin indent on
 
   let mapleader=","
+  "let mapleader=" "
 
 " Vundle
 " ======
@@ -42,8 +43,6 @@
     Bundle 'MarcWeber/vim-addon-mw-utils'
     Bundle 'tomtom/tlib_vim'
     Bundle 'honza/vim-snippets'
-  Bundle 'nanotech/jellybeans.vim'
-    color jellybeans
   Bundle 'gcmt/wildfire.vim'
   Bundle 'godlygeek/tabular'
   Bundle 'scrooloose/nerdcommenter'
@@ -55,6 +54,14 @@
   Bundle 'plasticboy/vim-markdown'
   Bundle 'puppetlabs/puppet-syntax-vim'
   Bundle 'saltstack/salt-vim'
+
+  " Colors
+  "Bundle 'nanotech/jellybeans.vim'
+  "  color jellybeans
+  Bundle 'altercation/vim-colors-solarized'
+    set background=dark
+    colorscheme solarized
+
 
 " FileTypes
 " =========
@@ -98,20 +105,23 @@
   endif
 
   " Automatic formatting
-  autocmd BufWritePre *.rb :%s/\s\+$//e
-  autocmd BufWritePre *.go :%s/\s\+$//e
-  autocmd BufWritePre *.haml :%s/\s\+$//e
-  autocmd BufWritePre *.html :%s/\s\+$//e
-  autocmd BufWritePre *.scss :%s/\s\+$//e
-  autocmd BufWritePre *.slim :%s/\s\+$//e
-  au BufNewFile * set noeol
-  au BufRead,BufNewFile *.go set filetype=go
+  "autocmd BufWritePre *.rb :%s/\s\+$//e
+  "autocmd BufWritePre *.go :%s/\s\+$//e
+  "autocmd BufWritePre *.haml :%s/\s\+$//e
+  "autocmd BufWritePre *.html :%s/\s\+$//e
+  "autocmd BufWritePre *.scss :%s/\s\+$//e
+  "autocmd BufWritePre *.slim :%s/\s\+$//e
+  "au BufNewFile * set noeol
+  "au BufRead,BufNewFile *.go set filetype=go
 
   " No show command
   autocmd VimEnter * set nosc
 
   " Toggle Paste/No Paste
   nnoremap <leader>p :set paste!<CR>
+
+  " Fix backspace on mac
+  set backspace=indent,eol,start
 
   " Quick ESC
   imap jj <ESC>
@@ -135,7 +145,7 @@
   noremap <tab> <c-w><c-w>
 
   " Switch between last two buffers
-  nnoremap <leader><leader> <C-^>
+  "nnoremap <leader><leader> <C-^>
 
   " Sudo write
   cnoremap w!! w !sudo tee % >/dev/null
@@ -146,10 +156,10 @@
 
   " Resize buffers
   if bufwinnr(1)
-    nmap Ä <C-W><<C-W><
-    nmap Ö <C-W>><C-W>>
-    nmap ö <C-W>-<C-W>-
-    nmap ä <C-W>+<C-W>+
+    nmap µ <C-W><<C-W><
+    nmap ∆ <C-W>><C-W>>
+    nmap Ô <C-W>-<C-W>-
+    nmap Â <C-W>+<C-W>+
   endif
 
   " Disable Q (Command Shell Mode)
@@ -183,7 +193,27 @@
   let g:ctrlp_max_depth = 5
 
   " Numbers
-  nmap <leader><leader>n :NumbersToggle<CR>
+  nmap <leader><leader>n :set nu!<CR>
+
+  " Fugitive
+	nnoremap <leader>ga :Git add %:p<CR><CR>
+	nnoremap <leader>gs :Gstatus<CR>
+	nnoremap <leader>gc :Gcommit<cr>
+	nnoremap <leader>gc :Gcommit -v -q<CR>
+	nnoremap <leader>gt :Gcommit -v -q %:p<CR>
+	nnoremap <Leader>gb :Gblame<CR>
+	nnoremap <leader>gd :Gdiff<CR>
+	nnoremap <leader>ge :Gedit<CR>
+	nnoremap <leader>gr :Gread<CR>
+	nnoremap <leader>gw :Gwrite<CR><CR>
+	nnoremap <leader>gl :silent! Glog<CR>:bot copen<CR>
+	nnoremap <leader>gp :Ggrep<Space>
+	nnoremap <leader>gm :Gmove<Space>
+	nnoremap <leader>gq :Git branch<Space>
+	nnoremap <leader>go :Git checkout<Space>
+	nnoremap <leader>gp :Git push<cr>
+	nnoremap <leader>gps :Dispatch! git push<CR>
+	nnoremap <leader>gpl :Dispatch! git pull<CR>
 
 
 " Performance Optimization

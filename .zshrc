@@ -14,13 +14,15 @@ source $ZSHA_BASE/antigen/antigen.zsh
 
 antigen-use oh-my-zsh
 antigen-bundle AlanSherman/zsh-distroalias
+antigen-bundle colorize
 antigen-bundle command-not-found
-antigen-bundle colored-man
+antigen-bundle colored-man-pages
 antigen-bundle extract
 antigen-bundle git
 antigen-bundle ssh-agent
 antigen-bundle sudo
 antigen-bundle svn
+antigen-bundle svn-fast-info
 antigen-bundle zsh-users/zsh-syntax-highlighting
 antigen-bundle zsh-users/zsh-history-substring-search
 
@@ -37,6 +39,9 @@ compinit -i
 
 # Add alias
 source ~/.alias
+
+# Fix PATH
+export PATH="/usr/local/bin:/usr/local/sbin:~/bin:$PATH"
 
 
 chpwd_auto_ls () {

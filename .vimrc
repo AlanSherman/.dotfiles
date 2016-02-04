@@ -57,6 +57,7 @@
 
   " Colors
   Bundle 'morhetz/gruvbox'
+    set background=dark
     colorscheme gruvbox
   "Bundle 'nanotech/jellybeans.vim'
   "  color jellybeans

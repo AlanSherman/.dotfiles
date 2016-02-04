@@ -56,11 +56,13 @@
   Bundle 'saltstack/salt-vim'
 
   " Colors
+  Bundle 'morhetz/gruvbox'
+    colorscheme gruvbox
   "Bundle 'nanotech/jellybeans.vim'
   "  color jellybeans
-  Bundle 'altercation/vim-colors-solarized'
-    set background=dark
-    colorscheme solarized
+  "Bundle 'altercation/vim-colors-solarized'
+  "  set background=dark
+  "  colorscheme solarized
 
 
 " FileTypes

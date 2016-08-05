@@ -24,3 +24,5 @@
    else
      alias irc='ssh alan@steel.alansherman.org -t screen -DAr irc'
    fi
+# Puppet
+  alias pat='sudo puppet agent -t'

@@ -52,6 +52,7 @@
 
   " Syntax
   Bundle 'plasticboy/vim-markdown'
+  Bundle 'PProvost/vim-ps1'
   Bundle 'puppetlabs/puppet-syntax-vim'
   Bundle 'saltstack/salt-vim'
 

@@ -139,6 +139,9 @@
   " format the entire file
   nmap <leader>fef ggVG=
 
+  " Remove trailing whitespace
+  nmap <leader>w :%s/\s\+$//e<cr>
+
   " Open new buffers
   nmap <leader>s<left>   :leftabove  vnew<cr>
   nmap <leader>s<right>  :rightbelow vnew<cr>

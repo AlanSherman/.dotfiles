@@ -26,7 +26,7 @@ antigen-bundle svn-fast-info
 antigen-bundle zsh-users/zsh-syntax-highlighting
 antigen-bundle zsh-users/zsh-history-substring-search
 
-antigen-theme blinks
+antigen-theme AlanSherman/dotfiles
 
 antigen-apply
 

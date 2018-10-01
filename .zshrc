@@ -1,37 +1,51 @@
-if [ ! -d $HOME/.antigen ]
+
+if [ ! -d ${HOME}/.zgen ]
 then
-  mkdir $HOME/.antigen
+  git clone https://github.com/tarjoilija/zgen.git "${HOME}/.zgen"
 fi
 
-ZSHA_BASE=$HOME/.antigen
+# load zgen
+source "${HOME}/.zgen/zgen.zsh"
 
-if [ ! -d $ZSHA_BASE/antigen ]
-then
-  git clone https://github.com/zsh-users/antigen.git $ZSHA_BASE/antigen
+# if the init scipt doesn't exist
+if ! zgen saved; then
+
+  zgen oh-my-zsh
+  zgen oh-my-zsh plugins/aws
+  zgen oh-my-zsh plugins/brew
+  zgen oh-my-zsh plugins/colored-man-pages
+  zgen oh-my-zsh plugins/colorize
+  zgen oh-my-zsh plugins/encode64
+  zgen oh-my-zsh plugins/extract
+  zgen oh-my-zsh plugins/git
+  zgen oh-my-zsh plugins/git-extras
+  zgen oh-my-zsh plugins/helm
+  zgen oh-my-zsh plugins/iterm2
+  zgen oh-my-zsh plugins/jsontools
+  zgen oh-my-zsh plugins/kops
+  zgen oh-my-zsh plugins/kubectl
+  zgen oh-my-zsh plugins/mvn
+  zgen oh-my-zsh plugins/ssh-agent
+  zgen oh-my-zsh plugins/sudo
+  zgen oh-my-zsh plugins/svn
+  zgen oh-my-zsh plugins/svn-fast-info
+
+
+  zgen load AlanSherman/zsh-distroalias
+  zgen load zsh-users/zsh-syntax-highlighting
+  zgen load zsh-users/zsh-history-substring-search
+
+  zgen oh-my-zsh themes/blinks
+  # zgen load AlanSherman/dotfiles
+
+  # generate the init script from plugins above
+  zgen save
 fi
-
-source $ZSHA_BASE/antigen/antigen.zsh
-
-antigen-use oh-my-zsh
-antigen-bundle AlanSherman/zsh-distroalias
-antigen-bundle colorize
-antigen-bundle command-not-found
-antigen-bundle colored-man-pages
-antigen-bundle extract
-antigen-bundle git
-antigen-bundle ssh-agent
-antigen-bundle sudo
-antigen-bundle svn
-antigen-bundle svn-fast-info
-antigen-bundle zsh-users/zsh-syntax-highlighting
-antigen-bundle zsh-users/zsh-history-substring-search
-
-antigen-theme AlanSherman/dotfiles
-
-antigen-apply
 
 # Set editor as vim
 export EDITOR="/usr/bin/vim"
+
+export TERM=xterm-256color
 
 # Load and run compinit
 autoload -U compinit
@@ -41,8 +55,7 @@ compinit -i
 source ~/.alias
 
 # Fix PATH
-export PATH="/usr/local/bin:/usr/local/sbin:~/bin:$PATH"
-
+export PATH="/usr/local/bin:/usr/local/sbin:$HOME/bin:$PATH"
 
 chpwd_auto_ls () {
   ls -HG

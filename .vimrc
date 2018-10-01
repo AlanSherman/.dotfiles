@@ -1,13 +1,13 @@
-"  Core
+" Core
 "  ====
 
-  " Use Vim settings instead of Vi settings.
+ " Use Vim settings instead of Vi settings.
   set nocompatible
 
   filetype plugin indent on
 
-  let mapleader=","
-  "let mapleader=" "
+  "let mapleader=","
+  let mapleader=" "
 
 " Vundle
 " ======
@@ -32,40 +32,54 @@
   endif
 
   " Let Vundle manage Vundle
-  Bundle 'gmarik/vundle'
+  Plugin 'gmarik/vundle'
 
-  " My Bundles
-  Bundle 'ervandew/supertab'
-  Bundle 'kien/ctrlp.vim'
-  Bundle 'Lokaltog/vim-easymotion'
-  Bundle 'Lokaltog/vim-powerline'
-  Bundle 'garbas/vim-snipmate'
-    Bundle 'MarcWeber/vim-addon-mw-utils'
-    Bundle 'tomtom/tlib_vim'
-    Bundle 'honza/vim-snippets'
-  Bundle 'gcmt/wildfire.vim'
-  Bundle 'godlygeek/tabular'
-  Bundle 'scrooloose/nerdcommenter'
-  Bundle 'scrooloose/nerdtree'
-  Bundle 'scrooloose/syntastic'
-  Bundle 'tpope/vim-fugitive'
+  " My Plugins
 
-  " Syntax
-  Bundle 'plasticboy/vim-markdown'
-  Bundle 'PProvost/vim-ps1'
-  Bundle 'puppetlabs/puppet-syntax-vim'
-  Bundle 'saltstack/salt-vim'
+  Plugin 'Lokaltog/vim-easymotion'
+  Plugin 'garbas/vim-snipmate'
+    Plugin 'MarcWeber/vim-addon-mw-utils'
+    Plugin 'tomtom/tlib_vim'
+    Plugin 'honza/vim-snippets'
+  Plugin 'gcmt/wildfire.vim'
+  " Plugin 'junegunn/fzf'
+
+  Plugin 'kien/ctrlp.vim'
+    let g:ctrlp_map = '<leader>f'
+    nnoremap <leader>b :CtrlPBuffer<CR>
+  Plugin 'tpope/vim-commentary'
+  Plugin 'w0rp/ale'
+  Plugin 'mhinz/vim-signify'
+    let g:signify_realtime = 1
+  Plugin 'francoiscabrol/ranger.vim'
+    let g:ranger_map_keys = 0
+    nnoremap <leader>d :Ranger<CR><CR>
+  Plugin 'ervandew/supertab'
+  Plugin 'godlygeek/tabular'
+  Plugin 'vim-airline/vim-airline'
+    let g:airline#extensions#tabline#enabled = 1
+    Plugin 'vim-airline/vim-airline-themes'
+    let g:airline_theme='tomorrow'
+  Plugin 'tpope/vim-fugitive'
+    nnoremap <leader>ga :Git add %:p<CR><CR>
+    nnoremap <leader>gs :Gstatus<CR>
+    nnoremap <leader>gc :Gcommit<cr>
+    nnoremap <Leader>gb :Gblame<CR>
+    nnoremap <leader>gd :Gdiff<CR>
+    nnoremap <leader>ge :Gedit<CR>
+    nnoremap <leader>gr :Gread<CR>
+    nnoremap <leader>gw :Gwrite<CR><CR>
+    nnoremap <leader>gp :Ggrep<Space>
+    nnoremap <leader>gm :Gmove<Space>
+    nnoremap <leader>gq :Git branch<Space>
+    nnoremap <leader>go :Git checkout<Space>
+  Plugin 'sheerun/vim-polyglot'
+  Plugin 'wincent/terminus'
 
   " Colors
-  Bundle 'morhetz/gruvbox'
+  Plugin 'morhetz/gruvbox'
     set background=dark
     colorscheme gruvbox
-  "Bundle 'nanotech/jellybeans.vim'
-  "  color jellybeans
-  "Bundle 'altercation/vim-colors-solarized'
-  "  set background=dark
-  "  colorscheme solarized
-
 
 " FileTypes
 " =========
@@ -83,13 +97,12 @@
   set modelines=0
   set shiftwidth=2
   set clipboard=unnamed
-  set synmaxcol=128
+  set synmaxcol=512
   set ttyscroll=10
   set encoding=utf-8
   set tabstop=2
   set nowrap
   set number
-  set expandtab
   set nowritebackup
   set noswapfile
   set nobackup
@@ -97,6 +110,9 @@
   set ignorecase
   set smartcase
   set laststatus=2
+  set foldmethod=indent
+  set foldlevel=20
+  " set clipboard=unnamedplus
 
   " Highlight Trailing Whitespace
   highlight ExtraWhitespace ctermbg=darkblue guibg=darkblue
@@ -107,16 +123,6 @@
       set undofile
       set undodir=~/.vim/tmp,~/.tmp,~/tmp,~/var/tmp,/tmp
   endif
-
-  " Automatic formatting
-  "autocmd BufWritePre *.rb :%s/\s\+$//e
-  "autocmd BufWritePre *.go :%s/\s\+$//e
-  "autocmd BufWritePre *.haml :%s/\s\+$//e
-  "autocmd BufWritePre *.html :%s/\s\+$//e
-  "autocmd BufWritePre *.scss :%s/\s\+$//e
-  "autocmd BufWritePre *.slim :%s/\s\+$//e
-  "au BufNewFile * set noeol
-  "au BufRead,BufNewFile *.go set filetype=go
 
   " No show command
   autocmd VimEnter * set nosc
@@ -131,35 +137,39 @@
   imap jj <ESC>
 
   " Jump to the next row on long lines
-  map <Down> gj
-  map <Up>   gk
-  nnoremap j gj
-  nnoremap k gk
+  " nnoremap j gj
+  " nnoremap k gk
+  nnoremap <expr> j v:count ? 'j' : 'gj'
+  nnoremap <expr> k v:count ? 'k' : 'gk'
 
-  " format the entire file
-  nmap <leader>fef ggVG=
+  " Page Up/Down
+  noremap J <C-F>
+  noremap K <C-B>
 
-  " Remove trailing whitespace
-  nmap <leader>w :%s/\s\+$//e<cr>
+  " Move between buffer
+  nmap <leader>l :bnext<CR>
+  nmap L :bprevious<CR>
+  nmap <leader>h :bnext<CR>
+  nmap H :bprevious<CR>
 
   " Open new buffers
-  nmap <leader>s<left>   :leftabove  vnew<cr>
-  nmap <leader>s<right>  :rightbelow vnew<cr>
-  nmap <leader>s<up>     :leftabove  new<cr>
-  nmap <leader>s<down>   :rightbelow new<cr>
+  nmap <leader>sh :leftabove  vnew<cr>
+  nmap <leader>sl :rightbelow vnew<cr>
+  nmap <leader>sk :leftabove  new<cr>
+  nmap <leader>sj :rightbelow new<cr>
 
-  " Tab between buffers
-  noremap <tab> <c-w><c-w>
+  " Redefine split navigations
+  nnoremap <C-J> <C-W><C-J>| " Use Ctrl+j to move down in split mode
+  nnoremap <C-K> <C-W><C-K>| " Use Ctrl+k to move up in split mode
+  nnoremap <C-L> <C-W><C-L>| " Use Ctrl+l to move right in split mode
+  nnoremap <C-H> <C-W><C-H>| " Use Ctrl+h to move left in split mode
 
-  " Switch between last two buffers
-  "nnoremap <leader><leader> <C-^>
+  " To open a new empty buffer
+  nmap <leader>t :enew<cr>
 
-  " Sudo write
-  cnoremap w!! w !sudo tee % >/dev/null
-
-  " Keep search matches in the center of the screen
-  nnoremap n nzzzv
-  nnoremap N Nzzzv
+  " Close the current buffer
+  nmap <leader>q :bd <CR>
+  nmap <leader><leader>q :bd! <CR>
 
   " Resize buffers
   if bufwinnr(1)
@@ -169,59 +179,33 @@
     nmap Â <C-W>+<C-W>+
   endif
 
+  " Tab between buffers
+  noremap <tab> <c-w><c-w>
+
+  " format the entire file
+  nmap <leader>fef ggVG=
+
+  " Remove trailing whitespace
+  nmap <leader>w :%s/\s\+$//e<cr>
+
+  " Sudo write
+  cnoremap w!! w !sudo tee % >/dev/null
+
+  " Keep search matches in the center of the screen
+  nnoremap n nzzzv
+  nnoremap N Nzzzv
+
+  " Un-highlight last search
+  nnoremap <silent> <leader>hl :set hlsearch!
+
+  " Toggle showing numbers
+  nmap <leader><leader>n :set nu!<CR>
+
   " Disable Q (Command Shell Mode)
   nnoremap Q <nop>
 
   " Quit with :Q
   command -nargs=0 Quit :qa!
-
-" Plugin Settings
-" ===============
-
-  " NERDTree
-  nmap <leader>n :NERDTreeToggle<CR>
-  let NERDTreeHighlightCursorline=1
-  let NERDTreeIgnore = ['tmp', '.yardoc', 'pkg']
-
-  " Syntastic
-  set statusline+=%#warningmsg#
-  set statusline+=%{SyntasticStatuslineFlag()}
-  set statusline+=%*
-  let g:syntastic_puppet_checkers=['puppetlint']
-  let g:syntastic_always_populate_loc_list = 1
-  "let g:syntastic_auto_loc_list = 1
-  let g:syntastic_check_on_open = 1
-  let g:syntastic_check_on_wq = 0
-
-  " CtrlP
-  let g:ctrlp_working_path_mode = 2
-  let g:ctrlp_by_filename = 1
-  let g:ctrlp_max_files = 600
-  let g:ctrlp_max_depth = 5
-
-  " Numbers
-  nmap <leader><leader>n :set nu!<CR>
-
-  " Fugitive
-	nnoremap <leader>ga :Git add %:p<CR><CR>
-	nnoremap <leader>gs :Gstatus<CR>
-	nnoremap <leader>gc :Gcommit<cr>
-	nnoremap <leader>gc :Gcommit -v -q<CR>
-	nnoremap <leader>gt :Gcommit -v -q %:p<CR>
-	nnoremap <Leader>gb :Gblame<CR>
-	nnoremap <leader>gd :Gdiff<CR>
-	nnoremap <leader>ge :Gedit<CR>
-	nnoremap <leader>gr :Gread<CR>
-	nnoremap <leader>gw :Gwrite<CR><CR>
-	nnoremap <leader>gl :silent! Glog<CR>:bot copen<CR>
-	nnoremap <leader>gp :Ggrep<Space>
-	nnoremap <leader>gm :Gmove<Space>
-	nnoremap <leader>gq :Git branch<Space>
-	nnoremap <leader>go :Git checkout<Space>
-	nnoremap <leader>gp :Git push<cr>
-	nnoremap <leader>gps :Dispatch! git push<CR>
-	nnoremap <leader>gpl :Dispatch! git pull<CR>
-
 
 " Performance Optimization
 " ========================
@@ -236,7 +220,3 @@
   set notimeout
   set ttimeout
   set ttimeoutlen=10
-
-  " Syntax optimazations
-  "syntax sync minlines=256
-  "set syntaxcol=256

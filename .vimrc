@@ -147,10 +147,10 @@
   noremap K <C-B>
 
   " Move between buffer
-  nmap <leader>l :bnext<CR>
-  nmap L :bprevious<CR>
-  nmap <leader>h :bnext<CR>
+  nmap <leader>h :bprevious<CR>
   nmap H :bprevious<CR>
+  nmap <leader>l :bnext<CR>
+  nmap L :bnext<CR>
 
   " Open new buffers
   nmap <leader>sh :leftabove  vnew<cr>

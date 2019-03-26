@@ -26,3 +26,6 @@
    fi
 # Puppet
   alias pat='sudo puppet agent -t'
+# kube
+  alias k='kubectl'
+  alias kc='kubectl config  set current-context'

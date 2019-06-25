@@ -1,0 +1,31 @@
+---
+tox:
+  stage: verify
+  image: python:3
+  before_script:
+    - pip install tox
+  script:
+    - tox
+
+build:
+  stage: build
+  image: python:3
+  before_script:
+    - pip install setuptools wheel
+  script:
+    - python setup.py sdist bdist_wheel
+
+publish:
+  stage: publish
+  image: python:3
+  variables:
+      TWINE_URL: $PYPI_URL
+      TWINE_USERNAME: $PYPI_USERNAME
+      TWINE_PASSWORD: $PYPI_PASSWORD
+  before_script:
+    - pip install twine
+  script:
+    - twine upload --repository-url $PYPI_URL dist/*
+  only:
+    # using notMaster for testing without having to merge PR to master
+    - notMaster

@@ -1,5 +1,3 @@
-environment
-environment-*
-id_rsa
-id_rsa.pub
-known_hosts
+.tox/
+*.retry
+*.swp

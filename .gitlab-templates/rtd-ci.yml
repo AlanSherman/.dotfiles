@@ -1,0 +1,12 @@
+---
+build:
+  stage: docs
+  image: python:3
+  before_script:
+    - pip install sphinx sphinx-rtd-theme sphinxcontrib-httpdomain recommonmark
+  script:
+    - sphinx-build -b html -W -n ./docs ./docs/_build/html
+  artifacts:
+    name: "docs"
+    paths:
+      - ./docs/_build/html

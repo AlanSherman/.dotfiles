@@ -1,0 +1,12 @@
+---
+image: alpine:latest
+
+stages:
+  - verify
+  - build
+  - test
+  - stage
+  - release
+
+include:
+  - local: .gitlab-templates/python-ci.yml

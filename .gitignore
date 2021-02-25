@@ -1,5 +1,2 @@
-environment
-environment-*
-id_rsa
-id_rsa.pub
-known_hosts
+/ssh
+!/ssh/config

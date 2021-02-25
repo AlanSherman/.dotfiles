@@ -6,61 +6,51 @@
 
   filetype plugin indent on
 
-  "let mapleader=","
   let mapleader=" "
 
-" Vundle
+" vim-plug
 " ======
 
-  " Setting up Vundle - the vim plugin bundler
-  let iCanHazVundle=1
-  let vundle_readme=expand('~/.vim/bundle/vundle/README.md')
-  if !filereadable(vundle_readme)
-    echo "Installing Vundle.."
-    echo ""
-    silent !mkdir -p ~/.vim/bundle
-    silent !git clone https://github.com/gmarik/vundle ~/.vim/bundle/vundle
-    let iCanHazVundle=0
-  endif
-  set rtp+=~/.vim/bundle/vundle/
-  call vundle#rc()
-
-  if iCanHazVundle == 0
-    echo "Installing Bundles, please ignore key map error messages"
-    echo ""
-    :BundleInstall
+  " Setting up vim-plug
+  if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
   endif
 
-  " Let Vundle manage Vundle
-  Plugin 'gmarik/vundle'
+  call plug#begin('~/.vim/plugged')
 
   " My Plugins
+  Plug 'Lokaltog/vim-easymotion'
+  " Plug 'garbas/vim-snipmate'
+  "   Plug 'MarcWeber/vim-addon-mw-utils'
+  "   Plug 'tomtom/tlib_vim'
+  "   Plug 'honza/vim-snippets'
+  Plug 'gcmt/wildfire.vim'
+  " Plug 'junegunn/fzf'
 
-  Plugin 'Lokaltog/vim-easymotion'
-  Plugin 'garbas/vim-snipmate'
-    Plugin 'MarcWeber/vim-addon-mw-utils'
-    Plugin 'tomtom/tlib_vim'
-    Plugin 'honza/vim-snippets'
-  Plugin 'gcmt/wildfire.vim'
-  " Plugin 'junegunn/fzf'
-
-  Plugin 'kien/ctrlp.vim'
+  Plug 'kien/ctrlp.vim'
     let g:ctrlp_map = '<leader>f'
     nnoremap <leader>b :CtrlPBuffer<CR>
-  Plugin 'tpope/vim-commentary'
-  Plugin 'w0rp/ale'
-  Plugin 'mhinz/vim-signify'
+  Plug 'tpope/vim-commentary'
+  Plug 'dense-analysis/ale'
+    let g:ale_fixers = {
+    \   '*': ['remove_trailing_lines', 'trim_whitespace'],
+    \  'go': ['gofmt'],
+    \}
+    let g:ale_fix_on_save = 1
+  Plug 'mhinz/vim-signify'
     let g:signify_realtime = 1
-  Plugin 'francoiscabrol/ranger.vim'
+  Plug 'francoiscabrol/ranger.vim'
     let g:ranger_map_keys = 0
     nnoremap <leader>d :Ranger<CR><CR>
-  Plugin 'ervandew/supertab'
-  Plugin 'godlygeek/tabular'
-  Plugin 'vim-airline/vim-airline'
+  " Plug 'ervandew/supertab'
+  Plug 'godlygeek/tabular'
+  Plug 'vim-airline/vim-airline'
     let g:airline#extensions#tabline#enabled = 1
-    Plugin 'vim-airline/vim-airline-themes'
+    Plug 'vim-airline/vim-airline-themes'
     let g:airline_theme='tomorrow'
-  Plugin 'tpope/vim-fugitive'
+  Plug 'tpope/vim-fugitive'
     nnoremap <leader>ga :Git add %:p<CR><CR>
     nnoremap <leader>gs :Gstatus<CR>
     nnoremap <leader>gc :Gcommit<cr>
@@ -73,13 +63,84 @@
     nnoremap <leader>gm :Gmove<Space>
     nnoremap <leader>gq :Git branch<Space>
     nnoremap <leader>go :Git checkout<Space>
-  Plugin 'sheerun/vim-polyglot'
-  Plugin 'wincent/terminus'
+  Plug 'sheerun/vim-polyglot'
+  Plug 'wincent/terminus'
 
-  " Colors
-  Plugin 'morhetz/gruvbox'
-    set background=dark
+  Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+  " Theme
+  Plug 'morhetz/gruvbox'
+
+  call plug#end()
+
+  " Give more space for displaying messages.
+set cmdheight=2
+
+" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
+" delays and poor user experience.
+set updatetime=300
+
+" Don't pass messages to |ins-completion-menu|.
+set shortmess+=c
+
+" Always show the signcolumn, otherwise it would shift the text each time
+" diagnostics appear/become resolved.
+set signcolumn=yes
+
+" Use tab for trigger completion with characters ahead and navigate.
+" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+" other plugin before putting this into your config.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Use `[g` and `]g` to navigate diagnostics
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+" GoTo code navigation.
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current
+" position. Coc only does snippet and additional edit on confirm.
+if exists('*complete_info')
+  inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+else
+  imap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+endif
+
+" Use K to show documentation in preview window.
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
+" Use <C-l> for trigger snippet expand.
+imap <C-l> <Plug>(coc-snippets-expand)
+
+" Use <C-j> for select text for visual placeholder of snippet.
+vmap <C-j> <Plug>(coc-snippets-select)
+
+" Theme
+" =========
+"
     colorscheme gruvbox
+    set background=dark
 
 " FileTypes
 " =========
@@ -107,12 +168,13 @@
   set noswapfile
   set nobackup
   set hlsearch
+  set incsearch
   set ignorecase
   set smartcase
   set laststatus=2
   set foldmethod=indent
   set foldlevel=20
-  " set clipboard=unnamedplus
+  set scrolloff=3
 
   " Highlight Trailing Whitespace
   highlight ExtraWhitespace ctermbg=darkblue guibg=darkblue
@@ -188,6 +250,19 @@
   " Remove trailing whitespace
   nmap <leader>w :%s/\s\+$//e<cr>
 
+  " Fold to top level
+  nmap <leader>ft :%foldc<cr>
+
+  nnoremap <leader>x *``cgn
+
+  " Fold max depth
+  nmap <leader>fd2 :set fdn=2<cr> zM
+  nmap <leader>fd3 :set fdn=3<cr> zM
+  nmap <leader>fd4 :set fdn=4<cr> zM
+  nmap <leader>fd5 :set fdn=5<cr> zM
+  nmap <leader>fd6 :set fdn=6<cr> zM
+  nmap <leader>fd7 :set fdn=7<cr> zM
+
   " Sudo write
   cnoremap w!! w !sudo tee % >/dev/null
 
@@ -196,7 +271,7 @@
   nnoremap N Nzzzv
 
   " Un-highlight last search
-  nnoremap <silent> <leader>hl :set hlsearch!
+  nnoremap <silent> <leader>hl :set hlsearch!<CR>
 
   " Toggle showing numbers
   nmap <leader><leader>n :set nu!<CR>
@@ -218,5 +293,4 @@
 
   " Set timeout on keycodes but not mappings
   set notimeout
-  set ttimeout
   set ttimeoutlen=10

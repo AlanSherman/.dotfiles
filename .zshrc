@@ -18,7 +18,6 @@ if ! zgen saved; then
   zgen oh-my-zsh plugins/git-extras
   zgen oh-my-zsh plugins/iterm2
   zgen oh-my-zsh plugins/jsontools
-  zgen oh-my-zsh plugins/ssh-agent
   zgen oh-my-zsh plugins/sudo
   zgen oh-my-zsh plugins/svn
   zgen oh-my-zsh plugins/svn-fast-info
@@ -55,3 +54,7 @@ chpwd_auto_ls () {
 }
 
 add-zsh-hook chpwd chpwd_auto_ls
+
+export GPG_TTY="$(tty)"
+export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+gpgconf --launch gpg-agent

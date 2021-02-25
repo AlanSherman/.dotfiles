@@ -18,14 +18,15 @@
    alias ...='cd ../..'
    alias ....='cd ../../..'
    alias .....='cd ../../../..'
-# IRC
-   if [ -n "`hostname | grep steel`" ]; then
-     alias irc='screen -DAr irc'
-   else
-     alias irc='ssh alan@steel.alansherman.org -t screen -DAr irc'
-   fi
-# Puppet
-  alias pat='sudo puppet agent -t'
 # kube
   alias k='kubectl'
-  alias kc='kubectl config  set current-context'
+  alias kc='kubectl config set current-context'
+# work
+  alias gc='git commit -sv'
+  alias ks='gpg-connect-agent "scd serialno" "learn --force" /bye'
+  alias terra-fix='export AWS_PROFILE="default" ; export AWS_SDK_LOAD_CONFIG=1 ; terraform workspace select dev'
+
+aws_login ()
+{
+    echo https://signin.aws.amazon.com/switchrole\?roleName=itx-admin\&account=$(aws --profile "$1" sts get-caller-identity | jq '.Account' | tr -d \")\&displayName=${1}
+}
